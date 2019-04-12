@@ -1,0 +1,66 @@
+{
+  "connection": "default",
+  "collectionName": "article",
+  "info": {
+    "name": "article",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "default": "",
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "user": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "articles",
+      "dominant": true
+    },
+    "categories": {
+      "collection": "category",
+      "via": "article"
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "article"
+    },
+    "content": {
+      "default": "",
+      "type": "text",
+      "required": true
+    },
+    "featured_image": {
+      "default": "",
+      "type": "string"
+    },
+    "published": {
+      "default": false,
+      "type": "boolean"
+    },
+    "content_brief": {
+      "default": "",
+      "type": "text"
+    },
+    "seo_title": {
+      "default": "",
+      "type": "string"
+    },
+    "seo_description": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,1123 @@
+type Article {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  slug: String!
+  user: UsersPermissionsUser
+  content: String!
+  featured_image: String
+  published: Boolean
+  content_brief: String
+  seo_title: String
+  seo_description: String
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comment]
+  categories(sort: String, limit: Int, start: Int, where: JSON): [Category]
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+}
+
+type ArticleAggregator {
+  count: Int
+}
+
+type ArticleConnection {
+  values: [Article]
+  groupBy: ArticleGroupBy
+  aggregate: ArticleAggregator
+}
+
+type ArticleConnection_id {
+  key: ID
+  connection: ArticleConnection
+}
+
+type ArticleConnectionContent {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionContent_brief {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionCreatedAt {
+  key: DateTime
+  connection: ArticleConnection
+}
+
+type ArticleConnectionFeatured_image {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionPublished {
+  key: Boolean
+  connection: ArticleConnection
+}
+
+type ArticleConnectionSeo_description {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionSeo_title {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionSlug {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionTitle {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionUpdatedAt {
+  key: DateTime
+  connection: ArticleConnection
+}
+
+type ArticleConnectionUser {
+  key: ID
+  connection: ArticleConnection
+}
+
+type ArticleGroupBy {
+  _id: [ArticleConnection_id]
+  createdAt: [ArticleConnectionCreatedAt]
+  updatedAt: [ArticleConnectionUpdatedAt]
+  title: [ArticleConnectionTitle]
+  slug: [ArticleConnectionSlug]
+  user: [ArticleConnectionUser]
+  content: [ArticleConnectionContent]
+  featured_image: [ArticleConnectionFeatured_image]
+  published: [ArticleConnectionPublished]
+  content_brief: [ArticleConnectionContent_brief]
+  seo_title: [ArticleConnectionSeo_title]
+  seo_description: [ArticleConnectionSeo_description]
+}
+
+input ArticleInput {
+  title: String!
+  slug: String!
+  user: ID
+  comments: [ID]
+  categories: [ID]
+  tags: [ID]
+  content: String!
+  featured_image: String
+  published: Boolean
+  content_brief: String
+  seo_title: String
+  seo_description: String
+}
+
+type Category {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  slug: String!
+  description: String
+  article(sort: String, limit: Int, start: Int, where: JSON): [Article]
+  galleries(sort: String, limit: Int, start: Int, where: JSON): [Gallery]
+}
+
+type CategoryAggregator {
+  count: Int
+}
+
+type CategoryConnection {
+  values: [Category]
+  groupBy: CategoryGroupBy
+  aggregate: CategoryAggregator
+}
+
+type CategoryConnection_id {
+  key: ID
+  connection: CategoryConnection
+}
+
+type CategoryConnectionCreatedAt {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+type CategoryConnectionDescription {
+  key: String
+  connection: CategoryConnection
+}
+
+type CategoryConnectionSlug {
+  key: String
+  connection: CategoryConnection
+}
+
+type CategoryConnectionTitle {
+  key: String
+  connection: CategoryConnection
+}
+
+type CategoryConnectionUpdatedAt {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+type CategoryGroupBy {
+  _id: [CategoryConnection_id]
+  createdAt: [CategoryConnectionCreatedAt]
+  updatedAt: [CategoryConnectionUpdatedAt]
+  title: [CategoryConnectionTitle]
+  slug: [CategoryConnectionSlug]
+  description: [CategoryConnectionDescription]
+}
+
+input CategoryInput {
+  title: String!
+  slug: String!
+  description: String
+  article: [ID]
+  galleries: [ID]
+}
+
+type Comment {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: UsersPermissionsUser
+  text: String!
+  articles: Article
+}
+
+type CommentAggregator {
+  count: Int
+}
+
+type CommentConnection {
+  values: [Comment]
+  groupBy: CommentGroupBy
+  aggregate: CommentAggregator
+}
+
+type CommentConnection_id {
+  key: ID
+  connection: CommentConnection
+}
+
+type CommentConnectionArticles {
+  key: ID
+  connection: CommentConnection
+}
+
+type CommentConnectionCreatedAt {
+  key: DateTime
+  connection: CommentConnection
+}
+
+type CommentConnectionText {
+  key: String
+  connection: CommentConnection
+}
+
+type CommentConnectionUpdatedAt {
+  key: DateTime
+  connection: CommentConnection
+}
+
+type CommentConnectionUser {
+  key: ID
+  connection: CommentConnection
+}
+
+type CommentGroupBy {
+  _id: [CommentConnection_id]
+  createdAt: [CommentConnectionCreatedAt]
+  updatedAt: [CommentConnectionUpdatedAt]
+  user: [CommentConnectionUser]
+  text: [CommentConnectionText]
+  articles: [CommentConnectionArticles]
+}
+
+input CommentInput {
+  user: ID
+  text: String!
+  articles: ID
+}
+
+input createArticleInput {
+  data: ArticleInput
+}
+
+type createArticlePayload {
+  article: Article
+}
+
+input createCategoryInput {
+  data: CategoryInput
+}
+
+type createCategoryPayload {
+  category: Category
+}
+
+input createCommentInput {
+  data: CommentInput
+}
+
+type createCommentPayload {
+  comment: Comment
+}
+
+input createGalleryInput {
+  data: GalleryInput
+}
+
+type createGalleryPayload {
+  gallery: Gallery
+}
+
+input createImageInput {
+  data: ImageInput
+}
+
+type createImagePayload {
+  image: Image
+}
+
+input createProjectInput {
+  data: ProjectInput
+}
+
+type createProjectPayload {
+  project: Project
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createTagInput {
+  data: TagInput
+}
+
+type createTagPayload {
+  tag: Tag
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteArticleInput {
+  where: InputID
+}
+
+type deleteArticlePayload {
+  article: Article
+}
+
+input deleteCategoryInput {
+  where: InputID
+}
+
+type deleteCategoryPayload {
+  category: Category
+}
+
+input deleteCommentInput {
+  where: InputID
+}
+
+type deleteCommentPayload {
+  comment: Comment
+}
+
+input deleteGalleryInput {
+  where: InputID
+}
+
+type deleteGalleryPayload {
+  gallery: Gallery
+}
+
+input deleteImageInput {
+  where: InputID
+}
+
+type deleteImagePayload {
+  image: Image
+}
+
+input deleteProjectInput {
+  where: InputID
+}
+
+type deleteProjectPayload {
+  project: Project
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteTagInput {
+  where: InputID
+}
+
+type deleteTagPayload {
+  tag: Tag
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  related: [ID]
+}
+
+"""full featured gallery"""
+type Gallery {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  description: String
+  seo_title: String
+  seo_description: String
+  published: Boolean
+  featured_image: String
+  categories(sort: String, limit: Int, start: Int, where: JSON): [Category]
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+  image(sort: String, limit: Int, start: Int, where: JSON): [Image]
+}
+
+type GalleryAggregator {
+  count: Int
+}
+
+type GalleryConnection {
+  values: [Gallery]
+  groupBy: GalleryGroupBy
+  aggregate: GalleryAggregator
+}
+
+type GalleryConnection_id {
+  key: ID
+  connection: GalleryConnection
+}
+
+type GalleryConnectionCreatedAt {
+  key: DateTime
+  connection: GalleryConnection
+}
+
+type GalleryConnectionDescription {
+  key: String
+  connection: GalleryConnection
+}
+
+type GalleryConnectionFeatured_image {
+  key: String
+  connection: GalleryConnection
+}
+
+type GalleryConnectionPublished {
+  key: Boolean
+  connection: GalleryConnection
+}
+
+type GalleryConnectionSeo_description {
+  key: String
+  connection: GalleryConnection
+}
+
+type GalleryConnectionSeo_title {
+  key: String
+  connection: GalleryConnection
+}
+
+type GalleryConnectionTitle {
+  key: String
+  connection: GalleryConnection
+}
+
+type GalleryConnectionUpdatedAt {
+  key: DateTime
+  connection: GalleryConnection
+}
+
+type GalleryGroupBy {
+  _id: [GalleryConnection_id]
+  createdAt: [GalleryConnectionCreatedAt]
+  updatedAt: [GalleryConnectionUpdatedAt]
+  title: [GalleryConnectionTitle]
+  description: [GalleryConnectionDescription]
+  seo_title: [GalleryConnectionSeo_title]
+  seo_description: [GalleryConnectionSeo_description]
+  published: [GalleryConnectionPublished]
+  featured_image: [GalleryConnectionFeatured_image]
+}
+
+input GalleryInput {
+  title: String
+  description: String
+  seo_title: String
+  seo_description: String
+  published: Boolean
+  featured_image: String
+  categories: [ID]
+  tags: [ID]
+  image: [ID]
+}
+
+type Image {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  description: String
+  seo_title: String
+  seo_description: String
+  featured_image: String
+  published: Boolean
+  slug: String
+  galleries(sort: String, limit: Int, start: Int, where: JSON): [Gallery]
+}
+
+type ImageAggregator {
+  count: Int
+}
+
+type ImageConnection {
+  values: [Image]
+  groupBy: ImageGroupBy
+  aggregate: ImageAggregator
+}
+
+type ImageConnection_id {
+  key: ID
+  connection: ImageConnection
+}
+
+type ImageConnectionCreatedAt {
+  key: DateTime
+  connection: ImageConnection
+}
+
+type ImageConnectionDescription {
+  key: String
+  connection: ImageConnection
+}
+
+type ImageConnectionFeatured_image {
+  key: String
+  connection: ImageConnection
+}
+
+type ImageConnectionPublished {
+  key: Boolean
+  connection: ImageConnection
+}
+
+type ImageConnectionSeo_description {
+  key: String
+  connection: ImageConnection
+}
+
+type ImageConnectionSeo_title {
+  key: String
+  connection: ImageConnection
+}
+
+type ImageConnectionSlug {
+  key: String
+  connection: ImageConnection
+}
+
+type ImageConnectionTitle {
+  key: String
+  connection: ImageConnection
+}
+
+type ImageConnectionUpdatedAt {
+  key: DateTime
+  connection: ImageConnection
+}
+
+type ImageGroupBy {
+  _id: [ImageConnection_id]
+  createdAt: [ImageConnectionCreatedAt]
+  updatedAt: [ImageConnectionUpdatedAt]
+  title: [ImageConnectionTitle]
+  description: [ImageConnectionDescription]
+  seo_title: [ImageConnectionSeo_title]
+  seo_description: [ImageConnectionSeo_description]
+  featured_image: [ImageConnectionFeatured_image]
+  published: [ImageConnectionPublished]
+  slug: [ImageConnectionSlug]
+}
+
+input ImageInput {
+  title: String
+  description: String
+  seo_title: String
+  seo_description: String
+  featured_image: String
+  published: Boolean
+  galleries: [ID]
+  slug: String
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+union Morph = Article | createArticlePayload | updateArticlePayload | deleteArticlePayload | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnection_id | ArticleConnectionCreatedAt | ArticleConnectionUpdatedAt | ArticleConnectionTitle | ArticleConnectionSlug | ArticleConnectionUser | ArticleConnectionContent | ArticleConnectionFeatured_image | ArticleConnectionPublished | ArticleConnectionContent_brief | ArticleConnectionSeo_title | ArticleConnectionSeo_description | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionTitle | CategoryConnectionSlug | CategoryConnectionDescription | Comment | createCommentPayload | updateCommentPayload | deleteCommentPayload | CommentConnection | CommentAggregator | CommentGroupBy | CommentConnection_id | CommentConnectionCreatedAt | CommentConnectionUpdatedAt | CommentConnectionUser | CommentConnectionText | CommentConnectionArticles | Gallery | createGalleryPayload | updateGalleryPayload | deleteGalleryPayload | GalleryConnection | GalleryAggregator | GalleryGroupBy | GalleryConnection_id | GalleryConnectionCreatedAt | GalleryConnectionUpdatedAt | GalleryConnectionTitle | GalleryConnectionDescription | GalleryConnectionSeo_title | GalleryConnectionSeo_description | GalleryConnectionPublished | GalleryConnectionFeatured_image | Image | createImagePayload | updateImagePayload | deleteImagePayload | ImageConnection | ImageAggregator | ImageGroupBy | ImageConnection_id | ImageConnectionCreatedAt | ImageConnectionUpdatedAt | ImageConnectionTitle | ImageConnectionDescription | ImageConnectionSeo_title | ImageConnectionSeo_description | ImageConnectionFeatured_image | ImageConnectionPublished | ImageConnectionSlug | Project | createProjectPayload | updateProjectPayload | deleteProjectPayload | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnection_id | ProjectConnectionCreatedAt | ProjectConnectionUpdatedAt | ProjectConnectionTitle | ProjectConnectionDescription | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionTitle | TagConnectionSlug | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+
+type Mutation {
+  createArticle(input: createArticleInput): createArticlePayload
+  updateArticle(input: updateArticleInput): updateArticlePayload
+  deleteArticle(input: deleteArticleInput): deleteArticlePayload
+  createCategory(input: createCategoryInput): createCategoryPayload
+  updateCategory(input: updateCategoryInput): updateCategoryPayload
+  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  createComment(input: createCommentInput): createCommentPayload
+  updateComment(input: updateCommentInput): updateCommentPayload
+  deleteComment(input: deleteCommentInput): deleteCommentPayload
+  createGallery(input: createGalleryInput): createGalleryPayload
+  updateGallery(input: updateGalleryInput): updateGalleryPayload
+  deleteGallery(input: deleteGalleryInput): deleteGalleryPayload
+  createImage(input: createImageInput): createImagePayload
+  updateImage(input: updateImageInput): updateImagePayload
+  deleteImage(input: deleteImageInput): deleteImagePayload
+  createProject(input: createProjectInput): createProjectPayload
+  updateProject(input: updateProjectInput): updateProjectPayload
+  deleteProject(input: deleteProjectInput): deleteProjectPayload
+  createTag(input: createTagInput): createTagPayload
+  updateTag(input: updateTagInput): updateTagPayload
+  deleteTag(input: deleteTagInput): deleteTagPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  createUser(input: createUserInput): createUserPayload
+  updateUser(input: updateUserInput): updateUserPayload
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+"""Programming projects etc"""
+type Project {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Title: String
+  Description: String
+}
+
+type ProjectAggregator {
+  count: Int
+}
+
+type ProjectConnection {
+  values: [Project]
+  groupBy: ProjectGroupBy
+  aggregate: ProjectAggregator
+}
+
+type ProjectConnection_id {
+  key: ID
+  connection: ProjectConnection
+}
+
+type ProjectConnectionCreatedAt {
+  key: DateTime
+  connection: ProjectConnection
+}
+
+type ProjectConnectionDescription {
+  key: String
+  connection: ProjectConnection
+}
+
+type ProjectConnectionTitle {
+  key: String
+  connection: ProjectConnection
+}
+
+type ProjectConnectionUpdatedAt {
+  key: DateTime
+  connection: ProjectConnection
+}
+
+type ProjectGroupBy {
+  _id: [ProjectConnection_id]
+  createdAt: [ProjectConnectionCreatedAt]
+  updatedAt: [ProjectConnectionUpdatedAt]
+  Title: [ProjectConnectionTitle]
+  Description: [ProjectConnectionDescription]
+}
+
+input ProjectInput {
+  Title: String
+  Description: String
+}
+
+type Query {
+  article(id: ID!): Article
+  articles(sort: String, limit: Int, start: Int, where: JSON): [Article]
+  articlesConnection(sort: String, limit: Int, start: Int, where: JSON): ArticleConnection
+  category(id: ID!): Category
+  categories(sort: String, limit: Int, start: Int, where: JSON): [Category]
+  categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
+  comment(id: ID!): Comment
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comment]
+  commentsConnection(sort: String, limit: Int, start: Int, where: JSON): CommentConnection
+  gallery(id: ID!): Gallery
+  galleries(sort: String, limit: Int, start: Int, where: JSON): [Gallery]
+  galleriesConnection(sort: String, limit: Int, start: Int, where: JSON): GalleryConnection
+  image(id: ID!): Image
+  images(sort: String, limit: Int, start: Int, where: JSON): [Image]
+  imagesConnection(sort: String, limit: Int, start: Int, where: JSON): ImageConnection
+  project(id: ID!): Project
+  projects(sort: String, limit: Int, start: Int, where: JSON): [Project]
+  projectsConnection(sort: String, limit: Int, start: Int, where: JSON): ProjectConnection
+  tag(id: ID!): Tag
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+  tagsConnection(sort: String, limit: Int, start: Int, where: JSON): TagConnection
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+type Tag {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  slug: String!
+  article(sort: String, limit: Int, start: Int, where: JSON): [Article]
+  galleries(sort: String, limit: Int, start: Int, where: JSON): [Gallery]
+}
+
+type TagAggregator {
+  count: Int
+}
+
+type TagConnection {
+  values: [Tag]
+  groupBy: TagGroupBy
+  aggregate: TagAggregator
+}
+
+type TagConnection_id {
+  key: ID
+  connection: TagConnection
+}
+
+type TagConnectionCreatedAt {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagConnectionSlug {
+  key: String
+  connection: TagConnection
+}
+
+type TagConnectionTitle {
+  key: String
+  connection: TagConnection
+}
+
+type TagConnectionUpdatedAt {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagGroupBy {
+  _id: [TagConnection_id]
+  createdAt: [TagConnectionCreatedAt]
+  updatedAt: [TagConnectionUpdatedAt]
+  title: [TagConnectionTitle]
+  slug: [TagConnectionSlug]
+}
+
+input TagInput {
+  title: String!
+  slug: String!
+  article: [ID]
+  galleries: [ID]
+}
+
+input updateArticleInput {
+  where: InputID
+  data: ArticleInput
+}
+
+type updateArticlePayload {
+  article: Article
+}
+
+input updateCategoryInput {
+  where: InputID
+  data: CategoryInput
+}
+
+type updateCategoryPayload {
+  category: Category
+}
+
+input updateCommentInput {
+  where: InputID
+  data: CommentInput
+}
+
+type updateCommentPayload {
+  comment: Comment
+}
+
+input updateGalleryInput {
+  where: InputID
+  data: GalleryInput
+}
+
+type updateGalleryPayload {
+  gallery: Gallery
+}
+
+input updateImageInput {
+  where: InputID
+  data: ImageInput
+}
+
+type updateImagePayload {
+  image: Image
+}
+
+input updateProjectInput {
+  where: InputID
+  data: ProjectInput
+}
+
+type updateProjectPayload {
+  project: Project
+}
+
+input updateRoleInput {
+  where: InputID
+  data: RoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateTagInput {
+  where: InputID
+  data: TagInput
+}
+
+type updateTagPayload {
+  tag: Tag
+}
+
+input updateUserInput {
+  where: InputID
+  data: UserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `Upload` scalar type represents a file upload promise that resolves an
+object containing `stream`, `filename`, `mimetype` and `encoding`.
+"""
+scalar Upload
+
+type UploadFile {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileAggregator {
+  count: Int
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSha256 {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  hash: [UploadFileConnectionHash]
+  sha256: [UploadFileConnectionSha256]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  provider: [UploadFileConnectionProvider]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+}
+
+type UsersPermissionsPermission {
+  _id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  _id: [UsersPermissionsRoleConnection_id]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  _id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  _id: [UsersPermissionsUserConnection_id]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}

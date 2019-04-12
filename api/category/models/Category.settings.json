@@ -1,0 +1,38 @@
+{
+  "connection": "default",
+  "collectionName": "category",
+  "info": {
+    "name": "category",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "article": {
+      "collection": "article",
+      "dominant": true,
+      "via": "categories"
+    },
+    "galleries": {
+      "collection": "gallery",
+      "via": "categories"
+    }
+  }
+}

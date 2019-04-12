@@ -1,0 +1,51 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "gallery",
+    "description": "full featured gallery"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "seo_title": {
+      "default": "",
+      "type": "string"
+    },
+    "seo_description": {
+      "default": "",
+      "type": "text"
+    },
+    "published": {
+      "default": false,
+      "type": "boolean"
+    },
+    "featured_image": {
+      "default": "",
+      "type": "string"
+    },
+    "categories": {
+      "collection": "category",
+      "via": "galleries",
+      "dominant": true
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "galleries",
+      "dominant": true
+    },
+    "image": {
+      "collection": "image",
+      "via": "galleries"
+    }
+  }
+}

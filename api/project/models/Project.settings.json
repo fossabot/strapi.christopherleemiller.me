@@ -1,0 +1,21 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "project",
+    "description": "Programming projects etc"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "default": "",
+      "type": "string"
+    },
+    "Description": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}

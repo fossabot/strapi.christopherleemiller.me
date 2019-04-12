@@ -1,0 +1,46 @@
+{
+  "connection": "default",
+  "collectionName": "image",
+  "info": {
+    "name": "image",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "seo_title": {
+      "default": "",
+      "type": "string"
+    },
+    "seo_description": {
+      "default": "",
+      "type": "text"
+    },
+    "featured_image": {
+      "default": "",
+      "type": "string"
+    },
+    "published": {
+      "default": false,
+      "type": "boolean"
+    },
+    "galleries": {
+      "collection": "gallery",
+      "via": "image",
+      "dominant": true
+    },
+    "slug": {
+      "default": "",
+      "type": "string"
+    }
+  }
+}

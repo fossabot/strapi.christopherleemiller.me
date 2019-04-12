@@ -1,0 +1,21 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "uri": "${process.env.DATABASE_URI || ''}",
+        "host": "${process.env.DATABASE_HOST || 'ds137263.mlab.com'}",
+        "port": "${process.env.DATABASE_PORT || 37263}",
+        "database": "${process.env.DATABASE_NAME || 'api_christopherleemiller_me'}",
+        "username": "${process.env.DATABASE_USERNAME || 'strapi'}",
+        "password": "${process.env.DATABASE_PASSWORD || 'strapi_pass1'}"
+      },
+      "options": {
+        "ssl": "${process.env.DATABASE_SSL || false}",
+        "authenticationDatabase": "${process.env.DATABASE_AUTHENTICATION_DATABASE || 'api_christopherleemiller_me'}"
+      }
+    }
+  }
+}
